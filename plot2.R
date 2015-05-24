@@ -1,0 +1,8 @@
+setwd("/Users/mac/Documents/coursera/ExData_Plotting1/")
+data <- read.table("./household_power_consumption.txt", sep = ";", header = TRUE, skip = 66636, nrows = 2880)
+columnNames <- read.table("./household_power_consumption.txt", sep = ";", header = TRUE, nrows = 1)
+names(data) <- names(columnNames)
+data$DateTime <- strptime(paste(data$Date, data$Time) , format = "%d/%m/%Y %H:%M:%S")
+png(filename = "./plot2.png")
+plot(data$DateTime, data$Global_active_power, type = "l", ylab = "Global Active Power (kilowatts)", xlab = "", main = "")
+dev.off()
